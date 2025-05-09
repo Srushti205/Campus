@@ -1,4 +1,61 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+
+
+class Student
+{
+   String Student_name;
+   String Student_id;
+   String Student_password;
+   String Subjects; 
+   String year;                   //eg-FY2024,SY2023...
+   int SubjectMarks;              //initialize subject marks coressponding to Subjects
+   String issue;
+   String address;
+
+}
+
+class Teacher
+{
+    String Teacher_name;
+    String Teacher_id;
+    String Teacher_password;
+    char Attendence;                     //Teachers may mark P: present , A: absent
+    String issue;
+}
+
+class Admin
+{
+    String Admin_name;
+    String Admin_id;
+    String Admin_password;
+    String events;
+
+}
+
+//Use above classes to make arraylists to store data.
+//Use the following classes to add in methods.
+
+//Hardcode the student data. So each object of type student arraylist will represent 1 student.Do the same for teachers as well as students. 
+
+class Student_Account
+{ 
+
+
+}
+
+class Teacher_Account extends Student_Account
+{
+
+}
+
+class Admin_Account extends Teacher_Account
+{
+
+}
+
+
+
 
 public class Main 
 {

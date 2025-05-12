@@ -20,7 +20,7 @@ class Teacher
     String Teacher_name;
     String Teacher_id;
     String Teacher_password;
-    char Attendence;                     //Teachers may mark P: present , A: absent
+    char Attendence='A';                     //Teachers may mark P: present , A: absent
     String issue;
 }
 

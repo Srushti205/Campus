@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
 class Student
 {
     String Student_name;      
@@ -28,7 +27,10 @@ class Student
         this.attendance =""; 
         this.signedEvent = "None";  
         this.issue = "";  
-    }//Teachers may mark P: present , A: absent
+    }
+    String getPassword(){
+        return Student_password;
+    }
 
 }
 
@@ -47,6 +49,10 @@ class Teacher
         this.subject=subject;
         this.issue="";
     }
+
+    String getPassword(){
+        return Teacher_password;
+    }
 }
 
 class Admin
@@ -56,6 +62,12 @@ class Admin
     private String Admin_password;
     String events;
 
+}
+
+class InvalidLoginException extends Exception{
+    InvalidLoginException(String msg){
+        super(msg);
+    }
 }
 
 //Use above classes to make arraylists to store data.
@@ -70,7 +82,7 @@ class Student_Account
  Student[] studentListA2 = new Student[4];  
  Student[] studentListB1 = new Student[4];  
  
- void assignValues(){
+ void assignData(){
         studentListA1[0] = new Student("Srushti", "A1_01", "A1", "Pune", 85, 78, 90);
         studentListA1[1] = new Student("Rucha", "A1_03", "A1", "Nagpur", 69, 72, 65);
         studentListA1[2] = new Student("Shruti", "A1_04", "A1", "Pune", 84, 87, 89);
@@ -78,13 +90,13 @@ class Student_Account
 
         studentListA2[0] = new Student("Shrishti", "A2_01", "A2", "Mumbai", 82, 76, 88);
         studentListA2[1] = new Student("Shreya", "A2_02", "A2", "Mumbai", 94, 90, 93);
-        studentListA2[2] = new Student("Priyanka", "A2_03", "A2", "Pune", 88, 90, 70);
+        studentListA2[2] = new Student("Priya", "A2_03", "A2", "Pune", 88, 90, 70);
         studentListA2[3] = new Student("Deepika", "A2_04", "A2", "Pune", 90, 88, 91);
        
         studentListB1[0] = new Student("Rutuja", "B1_01", "B1", "Delhi", 70, 68, 79);
         studentListB1[1] = new Student("Nidhi", "B1_02", "B1", "Pune", 92, 89, 94);
         studentListB1[2] = new Student("Sejal", "B1_03", "B1", "Mumbai", 88, 91, 86);
-        studentListB1[3] = new Student("Chinmayee", "B1_04", "B1", "Pune", 77, 74, 80);   
+        studentListB1[3] = new Student("Chinmayee", "B1_04_", "B1", "Pune", 77, 74, 80);   
 }
 
 void Attendance(){
@@ -125,14 +137,15 @@ class Teacher_Account extends Student_Account
 Scanner scanner= new Scanner(System.in);
 ArrayList <Teacher> Teacher_list= new ArrayList <>();
 
-void assignValues(){
+@Override
+void assignData(){
     Teacher mvc= new Teacher("Ms.Amita", "t201", "MVC");
     Teacher physics= new Teacher("Ms.Deepali","t102","Physics");
     Teacher oopj= new Teacher("Ms.Kavita", "t101", "OOPJ");
     Teacher_list.add(mvc);
     Teacher_list.add(physics);
     Teacher_list.add(oopj);
-    super.assignValues();
+    super.assignData();
 }
 @Override 
 void Attendance(){
@@ -220,7 +233,7 @@ void PhysicsMarks(){
         }
     }
 }
- @Override    
+@Override    
 void OOPJMarks(){
     System.out.println("Enter the batch :");
     String b=scanner.nextLine();
@@ -348,28 +361,31 @@ public class Campus
                 }
 
 
-
              case 2:
              { 
                 Teacher_Account teacher_acc= new Teacher_Account();
-                teacher_acc.assignValues();
+                teacher_acc.assignData();
                  System.out.println("**Teacher**");
                 System.out.println("Enter Teacher ID");
                 Teacher_id=main_input.next();
-                //System.out.println("Enter Password");
-                //String pass=main_input.next();
+                System.out.println("Enter Password");
+                String pass=main_input.next();
                 Teacher loggedin=null;
-                for(Teacher t: teacher_acc.Teacher_list){
-                    if(Teacher_id.equalsIgnoreCase(t.Teacher_id) /*&& pass.equalsIgnoreCase(t.Teacher_password)*/){
-                        System.out.println("You are loged in as "+ t.Teacher_name);
-                        loggedin=t;
-                        flag=1;
-                        
-                    }
+
+                for (Teacher t : teacher_acc.Teacher_list) {
+                 if (Teacher_id.equalsIgnoreCase(t.Teacher_id) && pass.equals(t.getPassword())) {
+                    System.out.println("You are logged in as: " + t.Teacher_name);
+                    loggedin = t;
+                    flag = 1;
+                    break; 
+                 }
+                }
+
+                try{
+
                     if(flag==0){
-                    System.out.println("Teacher id not recognized. Please try again.");
+                        throw new InvalidLoginException("The login ID and password do not match. Try Again.");
                     }
-    
                     if(flag==1)
                     {
                      do{
@@ -437,6 +453,8 @@ public class Campus
                  while(choice!=0);
                  
                  }
+                } catch (InvalidLoginException e){
+                    System.out.println(e);
                 }
             }
                 break;

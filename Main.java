@@ -67,7 +67,7 @@ class Student_Account
 { 
 //ArrayList <Student> Students_list= new ArrayList <>();
  Student[] studentListA1 = new Student[4];  
- Student[] studentListA2 = new Student[3];  
+ Student[] studentListA2 = new Student[4];  
  Student[] studentListB1 = new Student[4];  
  
  void assignValues(){
@@ -78,12 +78,13 @@ class Student_Account
 
         studentListA2[0] = new Student("Shrishti", "A2_01", "A2", "Mumbai", 82, 76, 88);
         studentListA2[1] = new Student("Shreya", "A2_02", "A2", "Mumbai", 94, 90, 93);
-        studentListA2[2] = new Student("Priya", "A2_03", "A2", "Pune", 88, 90, 70);
+        studentListA2[2] = new Student("Priyanka", "A2_03", "A2", "Pune", 88, 90, 70);
+        studentListA2[3] = new Student("Deepika", "A2_04", "A2", "Pune", 90, 88, 91);
        
         studentListB1[0] = new Student("Rutuja", "B1_01", "B1", "Delhi", 70, 68, 79);
         studentListB1[1] = new Student("Nidhi", "B1_02", "B1", "Pune", 92, 89, 94);
         studentListB1[2] = new Student("Sejal", "B1_03", "B1", "Mumbai", 88, 91, 86);
-        studentListB1[3] = new Student("Chinmayee", "B1_04_", "B1", "Pune", 77, 74, 80);   
+        studentListB1[3] = new Student("Chinmayee", "B1_04", "B1", "Pune", 77, 74, 80);   
 }
 
 void Attendance(){

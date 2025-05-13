@@ -86,6 +86,22 @@ class Student_Account
         studentListB1[3] = new Student("Chinmayee", "B1_04_", "B1", "Pune", 77, 74, 80);   
 }
 
+void Attendance(){
+    
+}
+
+void MVCMarks(){
+    
+}
+
+void PhysicsMarks(){
+    
+}
+
+void OOPJMarks(){
+    
+}
+    
 void display(){ // this is only for checking chnage it to proper display method
     for(Student s: studentListA1){
         System.out.println(s.Student_name+" "+s.Student_id+" "+Student.year+" "+s.attendance+""+s.mvcMarks+" "+s.oopjMarks+" "+s.physicsMarks);
@@ -117,8 +133,8 @@ void assignValues(){
     Teacher_list.add(oopj);
     super.assignValues();
 }
- 
-void markAttendance(){
+@Override 
+void Attendance(){
     System.out.println("Enter the batch :");
     String b=scanner.nextLine();
     
@@ -149,8 +165,8 @@ void markAttendance(){
     }
     
 }
-
-void changeMVCMarks(){
+@Override 
+void MVCMarks(){
     System.out.println("Enter the batch :");
     String b=scanner.nextLine();
     
@@ -176,8 +192,8 @@ void changeMVCMarks(){
         }
     }
     }
-
-void changePhysicsMarks(){
+@Override 
+void PhysicsMarks(){
     System.out.println("Enter the batch :");
     String b=scanner.nextLine();
     
@@ -203,8 +219,8 @@ void changePhysicsMarks(){
         }
     }
 }
-    
-void changeOOPJMarks(){
+ @Override    
+void OOPJMarks(){
     System.out.println("Enter the batch :");
     String b=scanner.nextLine();
     
@@ -365,20 +381,20 @@ public class Campus
 
                  case 1:
                  {
-                   teacher_acc.markAttendance(); 
+                   teacher_acc.Attendance(); 
                    teacher_acc.display(); // this was just to check whether the code is working or not
                  break;
                  }
                  case 2:
                  {
                        if(Teacher.subject.equalsIgnoreCase("MVC")){
-                        teacher_acc.changeMVCMarks();
+                        teacher_acc.MVCMarks();
                        }
                        else if(Teacher.subject.equalsIgnoreCase("Physics")){
-                        teacher_acc.changePhysicsMarks();
+                        teacher_acc.PhysicsMarks();
                        }
                        else if(Teacher.subject.equalsIgnoreCase("OOPJ")){
-                        teacher_acc.changeOOPJMarks();
+                        teacher_acc.OOPJMarks();
                        }
                        //teacher_acc.display();
                     }  
